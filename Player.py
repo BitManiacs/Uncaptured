@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+import collisions
 
 global game_engine
 
@@ -25,12 +26,20 @@ class Player:
       keys = pygame.key.get_pressed()
       if ( keys[K_LEFT] ):
          self.move( -BLOCK_PIXELS, 0 )
+         self.xDelta = -BLOCK_PIXELS
+         self.yDelta = 0
       elif ( keys[K_RIGHT] ):
          self.move( BLOCK_PIXELS, 0 )
+         self.xDelta = BLOCK_PIXELS
+         self.yDelta = 0
       elif ( keys[K_DOWN] ):
          self.move( 0, BLOCK_PIXELS )
+         self.xDelta = 0
+         self.yDelta = BLOCK_PIXELS
       elif ( keys[K_UP] ):
          self.move( 0, -BLOCK_PIXELS )
+         self.xDelta = 0
+         self.yDelta = -BLOCK_PIXELS
 
       
    def move( self, xDelta, yDelta ):
@@ -42,7 +51,29 @@ class Player:
          new2 + yDelta > 0 ):
          self.x += xDelta
          self.y += yDelta
+         """
+         coll = collisions.checkByType( self.x, self.y, "boulder" )
+         if ( len(coll) != 0 ):
+            self.x -= xDelta
+            self.y -= yDelta
+         """
+         """
+         newRect = self.image.get_rect().move( self.x, self.y )
+         for object in game_engine.objectList['boulder']:
+            if newRect.colliderect( object.image ):
+               self.x -= xDelta
+               self.y -= yDelta
+               """
 
+   def moveBack(self):
+      self.move( -self.xDelta, -self.yDelta )
+
+   def getX( self ):
+      return self.x
+
+
+   def getY( self ):
+      return self.y
 """
 #Using main.py to test instead
 clock = pygame.time.Clock()

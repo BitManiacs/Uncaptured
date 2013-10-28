@@ -17,6 +17,13 @@ class Boulder:
     def draw(self,screen):
         screen.blit(self.image,(self.x,self.y))
 
+    def getX( self ):
+      return self.x
+
+
+    def getY( self ):
+      return self.y
+
 class Grass:
     def __init__(self,x,y,options):
         self.x = x

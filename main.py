@@ -33,6 +33,7 @@ game_engine = None
 
 #Returns an "unique" ID and increments id_counter
 id_counter = 0
+clock = pygame.time.Clock()
 
 def generate_id():
     global id_counter
@@ -60,6 +61,13 @@ class GameEngine():
         for objType in self.objectList:
             for obj in self.objectList[objType]:
                 self.objectList[objType][obj].update()
+                
+                if ( objType == 'player'):
+                  coll = self.checkByType( self.objectList[objType][obj].getX(), 
+                  self.objectList[objType][obj].getY(), "boulder" )
+                  if ( len( coll ) != 0 ):
+                     self.objectList[objType][obj].moveBack()
+                     
 
     def draw(self):
         self.screen.fill((0,0,0))
@@ -76,17 +84,28 @@ class GameEngine():
             self.objectList[objType] = {}
 
         self.objectList[objType][new_id] = self.typeList[objType](x,y,optionList)
+
+    def getObjectList():
+      return self.objectList
 ###############################################################################
+    def checkByType(self, x,y,obj_type):
+       return_list = []
+       for obj in self.objectList[obj_type]:
+           if x == self.objectList[obj_type][obj].getX() and y == self.objectList[obj_type][obj].getY():
+               return_list.append(obj)
+       return return_list
+
 
 def main():
-    game_engine = GameEngine()
     # game_engine.addObject("player",100,100,{})
+    game_engine = GameEngine()
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
                 return
-
         game_engine.update()
         game_engine.draw()
+        clock.tick(10)
+
 
 if __name__ == '__main__': main()
