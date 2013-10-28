@@ -80,6 +80,7 @@ class GameEngine():
 
 def main():
     game_engine = GameEngine()
+    clock = pygame.time.Clock() # clock to maintain framerate
     # game_engine.addObject("player",100,100,{})
     while 1:
         for event in pygame.event.get():
@@ -88,5 +89,6 @@ def main():
 
         game_engine.update()
         game_engine.draw()
+        clock.tick(30) # 30 FPS
 
 if __name__ == '__main__': main()

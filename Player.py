@@ -17,9 +17,9 @@ class Player:
       self.y = y
       self.image = player_image
       self.health = 10 #Health at 10, might change
-      
+
    def draw(self,screen):
-      screen.blit( self.image, ( self.x, self.y ) ) 
+      screen.blit( self.image, ( self.x, self.y ) )
 
    def update(self):
       keys = pygame.key.get_pressed()
@@ -32,14 +32,15 @@ class Player:
       elif ( keys[K_UP] ):
          self.move( 0, -BLOCK_PIXELS )
 
-      
+
    def move( self, xDelta, yDelta ):
       new1 = self.x + self.image.get_width()
       new2 = self.y + self.image.get_height()
       """Check if moving will move out of bounds of the screen"""
-      if ( new1 + xDelta < SCREEN_WIDTH and new1 + 
-         xDelta > 0 and new2 + yDelta < SCREEN_HEIGHT and
-         new2 + yDelta > 0 ):
+      if ( new1 + xDelta <= SCREEN_WIDTH and
+          new1 + xDelta > 0 and
+          new2 + yDelta <= SCREEN_HEIGHT and
+          new2 + yDelta > 0 ):
          self.x += xDelta
          self.y += yDelta
 
