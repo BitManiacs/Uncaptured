@@ -23,20 +23,24 @@ class Player:
       screen.blit( self.image, ( self.x, self.y ) )
 
    def update(self):
-      keys = pygame.key.get_pressed()
-      if ( keys[K_LEFT] ):
+      events = pygame.event.get()
+      if ( len(events) != 0 ):
+         keys = events[0].key
+      else:
+         keys = 0
+      if ( keys == K_LEFT ):
          self.move( -BLOCK_PIXELS, 0 )
          self.xDelta = -BLOCK_PIXELS
          self.yDelta = 0
-      elif ( keys[K_RIGHT] ):
+      elif ( keys == K_RIGHT ):
          self.move( BLOCK_PIXELS, 0 )
          self.xDelta = BLOCK_PIXELS
          self.yDelta = 0
-      elif ( keys[K_DOWN] ):
+      elif ( keys == K_DOWN ):
          self.move( 0, BLOCK_PIXELS )
          self.xDelta = 0
          self.yDelta = BLOCK_PIXELS
-      elif ( keys[K_UP] ):
+      elif ( keys == K_UP ):
          self.move( 0, -BLOCK_PIXELS )
          self.xDelta = 0
          self.yDelta = -BLOCK_PIXELS
