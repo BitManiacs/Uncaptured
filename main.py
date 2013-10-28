@@ -61,13 +61,13 @@ class GameEngine():
         for objType in self.objectList:
             for obj in self.objectList[objType]:
                 self.objectList[objType][obj].update()
-                
+
                 if ( objType == 'player'):
-                  coll = self.checkByType( self.objectList[objType][obj].getX(), 
+                  coll = self.checkByType( self.objectList[objType][obj].getX(),
                   self.objectList[objType][obj].getY(), "boulder" )
                   if ( len( coll ) != 0 ):
                      self.objectList[objType][obj].moveBack()
-                     
+
 
     def draw(self):
         self.screen.fill((0,0,0))
@@ -97,11 +97,7 @@ class GameEngine():
 
 
 def main():
-<<<<<<< HEAD
     game_engine = GameEngine()
-    clock = pygame.time.Clock() # clock to maintain framerate
-=======
->>>>>>> 0c37cd47220bc2cf3042924ac5996cdc34fbdf44
     # game_engine.addObject("player",100,100,{})
     game_engine = GameEngine()
     while 1:
@@ -110,11 +106,7 @@ def main():
                 return
         game_engine.update()
         game_engine.draw()
-<<<<<<< HEAD
         clock.tick(30) # 30 FPS
-=======
-        clock.tick(10)
 
->>>>>>> 0c37cd47220bc2cf3042924ac5996cdc34fbdf44
 
 if __name__ == '__main__': main()

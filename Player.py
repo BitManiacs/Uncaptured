@@ -43,13 +43,13 @@ class Player:
 
 
    def move( self, xDelta, yDelta ):
-      new1 = self.x + self.image.get_width()
-      new2 = self.y + self.image.get_height()
+      #new1 = self.x + self.image.get_width()
+      #new2 = self.y + self.image.get_height()
       """Check if moving will move out of bounds of the screen"""
-      if ( new1 + xDelta <= SCREEN_WIDTH and
-          new1 + xDelta > 0 and
-          new2 + yDelta <= SCREEN_HEIGHT and
-          new2 + yDelta > 0 ):
+      if ( self.x + xDelta < SCREEN_WIDTH and
+          self.x + xDelta >= 0 and
+          self.y + yDelta < SCREEN_HEIGHT and
+          self.y + yDelta >= 0 ):
          self.x += xDelta
          self.y += yDelta
          """
