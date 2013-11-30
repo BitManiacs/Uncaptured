@@ -1,4 +1,5 @@
-
+import pygame
+import pygame.locals
 
 def checkAll(x,y):
     return_list = ()

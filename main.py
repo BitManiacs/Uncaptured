@@ -27,7 +27,7 @@ from Player import Player
 #from enemy import Enemy
 import collisions
 from Maps import Maps
-from other_types import Boulder, Grass, Pit
+from other_types import Boulder, Grass, Pit, Wall
 
 game_engine = None
 
@@ -48,30 +48,55 @@ class GameEngine():
         self.typeList = {'player': Player,
                          'grass': Grass,
                          'boulder': Boulder,
-                         'pit': Pit
+                         'pit': Pit,
+                         'wall': Wall # wall is not in json file as
+                                      # an object
                         } #FILL IN THE BLANKS WITH PLAYER/ENEMY OBJECTS
         self.objectList = {} #TAKES TYPE AND ID
         self.mapfile = Maps("maps/testlevel.json")
         self.tilemap = self.mapfile.get_tilemap()
         for obj in self.mapfile.get_objectlist():
-           obj_type,x,y,options = obj
-           self.addObject(obj_type,x,y,options)
+            obj_type,x,y,options = obj
+            self.addObject(obj_type,x,y,options)
 
     def update(self):
         for objType in self.objectList:
             for obj in self.objectList[objType]:
                 self.objectList[objType][obj].update()
-
                 if ( objType == 'player'):
-                  coll = self.checkByType( self.objectList[objType][obj].getX(),
-                  self.objectList[objType][obj].getY(), "boulder" )
-                  if ( len( coll ) != 0 ):
-                     self.objectList[objType][obj].moveBack()
+                    coll = self.checkByType( self.objectList[objType][obj].getX(),
+                      self.objectList[objType][obj].getY(), "boulder" )
+                    # wall detection
+                    wall = self.checkByType( self.objectList[objType][obj].getX(),
+                      self.objectList[objType][obj].getY(), "wall" )
+                    if ( len( coll ) != 0 or len( wall ) != 0):
+                        self.objectList[objType][obj].moveBack()
 
+    def drawbg(self, screen, mapwall):
+        pixelw = 32
+        pixelh = 32
+        floorRect = ( 0, 0, pixelw, pixelh)
+        wallRect = ( 96, 32, pixelw, pixelh)
+        wallImg = (self.mapfile.img).subsurface(wallRect)
+        floorImg = (self.mapfile.img).subsurface(floorRect)
+        tile_table = []
+        for tile_x in range(len(mapwall)):
+            line = []
+            tile_table.append(line)
+            for tile_y in range(len(mapwall[0])):
+                # fill w/ wall or floor
+                if (mapwall[tile_x][tile_y] == 0):
+                    line.append(floorImg)
+                else:
+                    line.append(wallImg)
+            # draw on screen
+            for x, row in enumerate(tile_table):
+                for y, tile in enumerate(row):
+                    screen.blit(tile, (x*32, y*32))
 
     def draw(self):
         self.screen.fill((0,0,0))
-        self.mapfile.draw(self.screen)
+        self.drawbg(self.screen, self.tilemap)
         for objType in self.objectList:
             for obj in self.objectList[objType]:
                 self.objectList[objType][obj].draw(self.screen)
@@ -79,14 +104,12 @@ class GameEngine():
 ###############################################################################
     def addObject(self,objType, x, y, optionList):
         new_id = generate_id()
-
         if objType not in self.objectList:
             self.objectList[objType] = {}
-
         self.objectList[objType][new_id] = self.typeList[objType](x,y,optionList)
 
     def getObjectList():
-      return self.objectList
+        return self.objectList
 ###############################################################################
     def checkByType(self, x,y,obj_type):
        return_list = []
@@ -99,7 +122,7 @@ class GameEngine():
 def main():
     game_engine = GameEngine()
     # game_engine.addObject("player",100,100,{})
-    game_engine = GameEngine()
+    # game_engine = GameEngine()
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:

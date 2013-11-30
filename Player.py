@@ -11,74 +11,89 @@ SCREEN_HEIGHT = 480
 
 class Player:
 
-   """Initiates the Player"""
-   #Using x,y,options(options comes from map file) as only parameters
-   def __init__(self, x, y, options):
-      self.x = x
-      self.y = y
-      self.image = player_image
-      self.health = 10 #Health at 10, might change
-
-   def draw(self,screen):
-      screen.blit( self.image, ( self.x, self.y ) )
-
-   def update(self):
-      events = pygame.event.get()
-      if ( len(events) != 0 ):
-         keys = events[0].key
-      else:
-         keys = 0
-      if ( keys == K_LEFT ):
-         self.move( -BLOCK_PIXELS, 0 )
-         self.xDelta = -BLOCK_PIXELS
-         self.yDelta = 0
-      elif ( keys == K_RIGHT ):
-         self.move( BLOCK_PIXELS, 0 )
-         self.xDelta = BLOCK_PIXELS
-         self.yDelta = 0
-      elif ( keys == K_DOWN ):
-         self.move( 0, BLOCK_PIXELS )
+    """Initiates the Player"""
+    #Using x,y,options(options comes from map file) as only parameters
+    def __init__(self, x, y, options):
+         self.x = x
+         self.y = y
+         self.image = player_image
+         self.health = 10 #Health at 10, might change
          self.xDelta = 0
-         self.yDelta = BLOCK_PIXELS
-      elif ( keys == K_UP ):
-         self.move( 0, -BLOCK_PIXELS )
-         self.xDelta = 0
-         self.yDelta = -BLOCK_PIXELS
+         self.yDelta = 0
+
+    def draw(self,screen):
+         screen.blit( self.image, ( self.x, self.y ) )
+
+    def update(self):
+        """
+        events = pygame.event.get()
+        if ( len(events) != 0 ):
+            keys = events[0].key
+            print keys
+        else:
+            keys = 0
+        """
+        # print "player update"
+        """
+        for events in pygame.event.get():
+            print events.type
+            if events.type == KEYDOWN:
+                print "here"
+                key = events.key;
+        """
+        key = pygame.key.get_pressed()
+        if ( key[K_LEFT] ):
+            self.move( -BLOCK_PIXELS, 0 )
+            self.xDelta = -BLOCK_PIXELS
+            self.yDelta = 0
+        elif ( key[K_RIGHT] ):
+            self.move( BLOCK_PIXELS, 0 )
+            self.xDelta = BLOCK_PIXELS
+            self.yDelta = 0
+        elif ( key[K_DOWN] ):
+            self.move( 0, BLOCK_PIXELS )
+            self.xDelta = 0
+            self.yDelta = BLOCK_PIXELS
+        elif ( key[K_UP] ):
+            self.move( 0, -BLOCK_PIXELS )
+            self.xDelta = 0
+            self.yDelta = -BLOCK_PIXELS
 
 
-   def move( self, xDelta, yDelta ):
-      #new1 = self.x + self.image.get_width()
-      #new2 = self.y + self.image.get_height()
-      """Check if moving will move out of bounds of the screen"""
-      if ( self.x + xDelta < SCREEN_WIDTH and
-          self.x + xDelta >= 0 and
-          self.y + yDelta < SCREEN_HEIGHT and
-          self.y + yDelta >= 0 ):
-         self.x += xDelta
-         self.y += yDelta
-         """
-         coll = collisions.checkByType( self.x, self.y, "boulder" )
-         if ( len(coll) != 0 ):
-            self.x -= xDelta
-            self.y -= yDelta
-         """
-         """
-         newRect = self.image.get_rect().move( self.x, self.y )
-         for object in game_engine.objectList['boulder']:
+    def move( self, xDelta, yDelta ):
+        #new1 = self.x + self.image.get_width()
+        #new2 = self.y + self.image.get_height()
+        """Check if moving will move out of bounds of the screen"""
+        if ( self.x + xDelta < SCREEN_WIDTH and
+                self.x + xDelta >= 0 and
+                self.y + yDelta < SCREEN_HEIGHT and
+                self.y + yDelta >= 0 ):
+            self.x += xDelta
+            self.y += yDelta
+
+        """
+        coll = collisions.checkByType( self.x, self.y, "boulder" )
+        if ( len(coll) != 0 ):
+           self.x -= xDelta
+           self.y -= yDelta
+        """
+        """
+        newRect = self.image.get_rect().move( self.x, self.y )
+        for object in game_engine.objectList['boulder']:
             if newRect.colliderect( object.image ):
                self.x -= xDelta
                self.y -= yDelta
-               """
+        """
 
-   def moveBack(self):
-      self.move( -self.xDelta, -self.yDelta )
+    def moveBack(self):
+        self.move( -self.xDelta, -self.yDelta )
 
-   def getX( self ):
-      return self.x
+    def getX( self ):
+        return self.x
 
 
-   def getY( self ):
-      return self.y
+    def getY( self ):
+        return self.y
 """
 #Using main.py to test instead
 clock = pygame.time.Clock()

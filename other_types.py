@@ -49,3 +49,22 @@ class Pit:
 
     def draw(self,screen):
         screen.blit(self.image,(self.x,self.y))
+
+class Wall:
+    def __init__(self,x,y,options):
+        self.x = x
+        self.y = y
+        self.obj_type = "wall"
+
+    def update(self):
+        return None
+
+    def draw(self,screen):
+        return None
+
+    def getX( self ):
+      return self.x
+
+    def getY( self ):
+      return self.y
+

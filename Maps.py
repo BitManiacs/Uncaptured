@@ -8,6 +8,9 @@ pixelh = 32
 
 class Maps:
 
+  pixelw = 32
+  pixelh = 32
+
   def __init__(self, Filename):
     json_input = open(Filename).read()
     self.data = json.loads(json_input)
@@ -41,9 +44,23 @@ class Maps:
   def get_objectlist(self):
     obj_list = []
     for layer in self.data['layers']:
+      # if object is a wall
       if (layer['type'] == "tilelayer"):
-        continue
+        name = "wall"
+        wall = layer['data'][0]
+        x = 0
+        y = 0
+        for tile in layer['data']:
+            print (tile),
+            if (tile == wall):
+                obj_list.append((name, x, y, {}))
+            x += 32
+            if (x == 32*20):
+                print "\n"
+                x = 0
+                y += 32
       else:
+        # other than a wall
         name = layer['name']
         for obj in layer['objects']:
           obj_list.append((name, obj['x'], obj['y'], obj['properties']))
@@ -51,6 +68,7 @@ class Maps:
 
 
   # Draws background
+  # not used
   def draw(self, screen):
     floorRect = ( 0, 0, pixelw, pixelh)
     wallRect = ( 96, 32, pixelw, pixelh)
