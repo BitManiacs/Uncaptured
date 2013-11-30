@@ -1,0 +1,41 @@
+### FORMAT ###
+
+TITLE
+DESCRIPTION
+PRIORITY (0 - 50 most important)
+WORKING DAYS
+PROGRESS
+
+##########
+
+Title Screen
+User enters title screen when game starts
+30
+5
+NOT DONE
+
+##########
+
+Title Screen choices
+User can see and select different options when in title screen
+30
+3
+NOT DONE
+
+##########
+
+Starting the Game
+Game level starts when user selects "Start" in title screen
+40
+3
+NOT DONE
+
+##########
+
+Show Game Controls
+Show control options when user selects "Options" in title screen
+30
+3
+NOT DONE
+
+##########
