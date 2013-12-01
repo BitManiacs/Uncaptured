@@ -28,6 +28,7 @@ from Player import Player
 import collisions
 from Maps import Maps
 from other_types import Boulder, Grass, Pit, Wall
+from TitleScreen import TitleScreen
 
 game_engine = None
 
@@ -118,11 +119,26 @@ class GameEngine():
                return_list.append(obj)
        return return_list
 
+    def getScrn(self):
+        return self.screen
 
 def main():
     game_engine = GameEngine()
+    titlescrn = TitleScreen()
     # game_engine.addObject("player",100,100,{})
     # game_engine = GameEngine()
+    title = True
+    # title screen
+    while (title):
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                return
+        titlescrn.update()
+        titlescrn.draw(titlescrn.getScrn())
+        if (titlescrn.getStart()):
+            title = False
+        clock.tick(30)
+
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
