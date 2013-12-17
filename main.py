@@ -29,6 +29,7 @@ import collisions
 from Maps import Maps
 from other_types import Boulder, Grass, Pit, Wall
 from TitleScreen import TitleScreen
+from options import Options
 
 game_engine = None
 
@@ -125,6 +126,7 @@ class GameEngine():
 def main():
     game_engine = GameEngine()
     titlescrn = TitleScreen()
+    optionscrn = Options()
     # game_engine.addObject("player",100,100,{})
     # game_engine = GameEngine()
     title = True
@@ -135,6 +137,11 @@ def main():
                 return
         titlescrn.update()
         titlescrn.draw(titlescrn.getScrn())
+        print "TICK"
+        while(titlescrn.getOptions()):
+           optionscrn.update()
+           optionscrn.draw(titlescrn.getScrn())
+           clock.tick(30)
         if (titlescrn.getStart()):
             title = False
         clock.tick(30)
