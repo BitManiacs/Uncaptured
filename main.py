@@ -139,9 +139,9 @@ def main():
         titlescrn.draw(titlescrn.getScrn())
         print "TICK"
         while(titlescrn.getOptions()):
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                return
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    return
             optionscrn.update()
             optionscrn.draw(titlescrn.getScrn())
             clock.tick(30)
