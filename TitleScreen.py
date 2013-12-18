@@ -7,6 +7,7 @@ class TitleScreen:
         pygame.init() # initialize pygame modules
         self.screen = pygame.display.set_mode((640, 480))
         self.start = False # start game check
+        self.options = False
         self.bg = pygame.image.load("img/TitleScreen.png").convert()
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
         self.select = pygame.image.load("img/TitleStart.png"), \
@@ -23,11 +24,19 @@ class TitleScreen:
     def getStart(self):
         return self.start
 
+    def openOptions(self):
+         self.options = True
+
+    def getOptions(self):
+         return self.options
+
     def update(self):
         key = pygame.key.get_pressed()
         if (key[K_RETURN] and self.cursorxy[1] == 288):
             print "START GAME"
             self.startGame()
+        elif (key[K_RETURN] and self.cursorxy[1] == 320):
+            self.openOptions()
         elif (key[K_DOWN]):
             self.cursormove("down")
         elif (key[K_UP]):
