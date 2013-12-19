@@ -17,8 +17,9 @@ class GameEngine():
         self.state = None
 
     def draw(self):
-        self.state.draw()
-        pygame.display.flip()
+        if ( self.state != None ):
+            self.state.draw(self.screen)
+            pygame.display.flip()
 
     def setState(self,state):
         self.state = state

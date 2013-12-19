@@ -15,7 +15,7 @@ def main():
     # make a GameEngine instance
     game_engine = GameEngine()
     # set state to title screen
-    game_engine.setState(TitleScreen(game_engine.getScreen()))
+    game_engine.setState(TitleScreen())
     # continuously update game_engine
     while 1:
         for event in pygame.event.get():
