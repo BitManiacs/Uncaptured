@@ -5,8 +5,6 @@ from TitleScreen import TitleScreen
 from pygame.locals import *
 
 ''' GLOBAL VARS '''
-
-clock = pygame.time.Clock()
 # need game engine to be changed by states
 game_engine = None
 
@@ -24,7 +22,7 @@ def main():
         #game_engine.update()
         game_engine.draw()
         # set the fps
-        clock.tick(30) # 30 FPS
+        game_engine.FPS(30) # 30 FPS
 
 # call main
 if __name__ == '__main__': main()

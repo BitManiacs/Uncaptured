@@ -1,12 +1,13 @@
 import pygame
 from pygame.locals import *
-    
+
 class TitleScreen():
     def __init__(self):
         # setup display screen
         self.bg = pygame.image.load("img/TitleScreen2.png").convert()
-        self.bgimg = self.bg.subsurface((0,0, 640, 480))    
+        self.bgimg = self.bg.subsurface((0,0, 640, 480))
 
+    # called by the gameengine, draws the state of Title Screen
     def draw(self, screen):
         # fill screen with darkness
         screen.fill((0,0,0))
