@@ -1,4 +1,4 @@
-import pygame
+ import pygame
 from TitleScreen import TitleScreen
 from pygame.locals import *
 
@@ -14,12 +14,12 @@ class GameEngine():
         self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
         self.bg = pygame.image.load("img/TitleScreen2.png").convert()
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
-        self.state = TitleScreen(self.screen)
+        self.state = None
 
     def draw(self):
         self.state.draw()
         pygame.display.flip()
 
     def setState(self,state):
-        self.state = state                           
+        self.state = state
 
