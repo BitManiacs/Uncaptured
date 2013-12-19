@@ -15,11 +15,10 @@ def main():
     game_engine.setState(TitleScreen())
     # continuously update game_engine
     while 1:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                return
+        if pygame.event.peek(QUIT):
+            return
         # update and draw
-        #game_engine.update()
+        game_engine.update()
         game_engine.draw()
         # set the fps
         game_engine.FPS(30) # 30 FPS

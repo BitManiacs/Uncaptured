@@ -20,6 +20,10 @@ class GameEngine():
             self.state.draw(self.screen)
             pygame.display.flip()
 
+    def update(self):
+        if ( self.state != None ):
+            self.state.update()
+
     # sets the current state of the game
     def setState(self,state):
         self.state = state
