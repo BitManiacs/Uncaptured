@@ -1,4 +1,5 @@
 import pygame
+from TitleScreen import TitleScreen
 from pygame.locals import *
 
 SCREEN_PIXEL_WIDTH = 640
@@ -11,10 +12,14 @@ class GameEngine():
         pygame.init()
         # setup display screen
         self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
+        self.bg = pygame.image.load("img/TitleScreen2.png").convert()
+        self.bgimg = self.bg.subsurface((0,0, 640, 480))
+        self.state = TitleScreen(self.screen)
 
     def draw(self):
-        # fill screen with darkness
-        self.screen.fill((0,0,0))
-        # update the display
+        self.state.draw()
         pygame.display.flip()
+
+    def setState(self,state):
+        self.state = state                           
 
