@@ -1,4 +1,4 @@
-vgdc-gamejam-october
+Uncaptured by BitManiacs
 ====================
 
-Game repo for october vgdc gamejam
+Repo for Uncaptured
