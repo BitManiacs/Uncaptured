@@ -13,6 +13,7 @@ class TitleScreen():
         self.font = pygame.font.Font(OPTIONS_FONT,TITLE_FONT_SIZE)
         self.optionList = ["Start Game", "Options", "Exit"]
         self.selected = 0
+        self.counter = 0
 
     # called by the gameengine, draws the state of Title Screen
     def draw(self, screen):
@@ -39,12 +40,32 @@ class TitleScreen():
             y += Y_OFFSET
 
     def update(self):
+        '''
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_RETURN):
-                    print self.optionList[selected]
-                elif (event.key == pygame.K_DOWN):
+                keystate = pygame.key.get_pressed()
+                if (event.key == pygame.K_DOWN):
                     self.selected = (self.selected+1) % len(self.optionList)
                 elif (event.key == pygame.K_UP):
                     self.selected = (self.selected-1) % len(self.optionList)
+                elif (event.key == pygame.K_RETURN):
+                    self.select()'''
+                    
+        if ( self.counter < 2 ):
+            self.counter += 1
+            return
+        key = pygame.key.get_pressed()
+        if (key[K_RETURN]):
+            self.select()
+        elif (key[K_DOWN]):
+            self.selected = (self.selected+1) % len(self.optionList)
+        elif (key[K_UP]):
+            self.selected = (self.selected-1) % len(self.optionList)
+        self.counter = 0
+        return
+
+
+    def select(self):
+        print self.optionList[self.selected]
+        return
