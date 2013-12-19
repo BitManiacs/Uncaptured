@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tiles Set" tilewidth="32" tileheight="32">
+  <image source="../img/Tiles Set.png" width="192" height="192"/>
+ </tileset>
+ <layer name="Ground" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYBrFo3gUj+IhgAGH6wJZ
+  </data>
+ </layer>
+ <objectgroup name="Wall" width="20" height="15">
+  <object gid="10" x="32" y="32"/>
+  <object gid="10" x="0" y="32"/>
+  <object gid="10" x="64" y="33"/>
+  <object gid="10" x="96" y="32"/>
+ </objectgroup>
+</map>
