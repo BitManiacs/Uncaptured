@@ -14,6 +14,7 @@ class GameEngine():
         self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
         self.bg = pygame.image.load("img/TitleScreen2.png").convert()
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
+        # state is the event the game is in
         self.state = None
 
     def draw(self):
@@ -23,7 +24,3 @@ class GameEngine():
 
     def setState(self,state):
         self.state = state
-
-    def getScreen(self):
-        return self.screen
-
