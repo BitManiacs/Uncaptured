@@ -9,8 +9,6 @@ class GameEngine():
         pygame.init()
         # setup display screen
         self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
-        self.bg = pygame.image.load("img/TitleScreen2.png").convert()
-        self.bgimg = self.bg.subsurface((0,0, 640, 480))
         # state is the event the game is in
         self.state = None
 
