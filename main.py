@@ -138,7 +138,10 @@ def main():
                 return
         titlescrn.update()
         titlescrn.draw(titlescrn.getScrn())
+<<<<<<< HEAD
+=======
         # print "TICK"
+>>>>>>> 36d2f9b266a1312ee7022db099cb723ff97a318c
         while(titlescrn.getOptions()):
             for event in pygame.event.get():
                 if event.type == QUIT:
