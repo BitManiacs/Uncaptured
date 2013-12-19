@@ -3,6 +3,7 @@ import pygame
 BOULDER_IMAGE = pygame.image.load("img/Boulder.png")
 PIT_IMAGE = pygame.image.load("img/Tiles Set.png")
 GRASS_IMAGE = pygame.image.load("img/Grass.png")
+ENEMY_IMAGE = pygame.image.load("img/Rocket.png")
 
 class Boulder:
     def __init__(self,x,y,options):
@@ -67,4 +68,18 @@ class Wall:
 
     def getY( self ):
       return self.y
+
+class Enemy:
+    def __init__(self,x,y,options):
+        self.x = x
+        self.y = y
+        self.obj_type = "enemy"
+        self.image = ENEMY_IMAGE
+
+    def update(self):
+        return None
+
+    def draw(self,screen):
+        screen.blit(self.image,(self.x,self.y))
+
 

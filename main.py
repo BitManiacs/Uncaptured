@@ -27,7 +27,7 @@ from Player import Player
 #from enemy import Enemy
 import collisions
 from Maps import Maps
-from other_types import Boulder, Grass, Pit, Wall
+from other_types import Boulder, Grass, Pit, Wall, Enemy
 from TitleScreen import TitleScreen
 from options import Options
 
@@ -51,11 +51,12 @@ class GameEngine():
                          'grass': Grass,
                          'boulder': Boulder,
                          'pit': Pit,
-                         'wall': Wall # wall is not in json file as
+                         'wall': Wall,
+                         'enemy': Enemy # wall is not in json file as
                                       # an object
                         } #FILL IN THE BLANKS WITH PLAYER/ENEMY OBJECTS
         self.objectList = {} #TAKES TYPE AND ID
-        self.mapfile = Maps("maps/testlevel.json")
+        self.mapfile = Maps("maps/testLevel.json")
         self.tilemap = self.mapfile.get_tilemap()
         for obj in self.mapfile.get_objectlist():
             obj_type,x,y,options = obj
@@ -137,7 +138,7 @@ def main():
                 return
         titlescrn.update()
         titlescrn.draw(titlescrn.getScrn())
-        print "TICK"
+        # print "TICK"
         while(titlescrn.getOptions()):
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -160,6 +161,6 @@ def main():
 
 if __name__ == '__main__': main()
 
-#TESTING GIT FETCH -> MERGE
+# TESTING GIT FETCH -> MERGE
 
 # TEST FOR DEV BRANCH
