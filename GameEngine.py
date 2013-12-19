@@ -1,4 +1,4 @@
- import pygame
+import pygame
 from TitleScreen import TitleScreen
 from pygame.locals import *
 
