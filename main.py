@@ -1,5 +1,6 @@
 import pygame
 from GameEngine import GameEngine
+from TitleScreen import TitleScreen
 from pygame.locals import *
 
 ''' GLOBAL VARS '''
@@ -14,7 +15,7 @@ def main():
     # make a GameEngine instance
     game_engine = GameEngine()
     # set state to title screen
-    game_engine.setState(TitleScreen())
+    game_engine.setState(TitleScreen(game_engine.getScreen()))
     # continuously update game_engine
     while 1:
         for event in pygame.event.get():

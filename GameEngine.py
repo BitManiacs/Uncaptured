@@ -23,3 +23,6 @@ class GameEngine():
     def setState(self,state):
         self.state = state
 
+    def getScreen(self):
+        return self.screen
+
