@@ -21,6 +21,7 @@ class GameEngine():
         # update the display
         pygame.display.flip()
 
+
 def main():
     # make a GameEngine instance
     game_engine = GameEngine()
