@@ -1,12 +1,11 @@
 import pygame
+from Config import *
 from GameEngine import GameEngine
 from TitleScreen import TitleScreen
 from pygame.locals import *
 
 ''' GLOBAL VARS '''
-SCREEN_PIXEL_WIDTH = 640
-SCREEN_PIXEL_HEIGHT = 480
-SCREEN_DIMENSION = (SCREEN_PIXEL_WIDTH, SCREEN_PIXEL_HEIGHT)
+
 clock = pygame.time.Clock()
 # need game engine to be changed by states
 game_engine = None

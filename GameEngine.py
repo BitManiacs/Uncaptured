@@ -1,10 +1,7 @@
 import pygame
+from Config import *
 from TitleScreen import TitleScreen
 from pygame.locals import *
-
-SCREEN_PIXEL_WIDTH = 640
-SCREEN_PIXEL_HEIGHT = 480
-SCREEN_DIMENSION = (SCREEN_PIXEL_WIDTH, SCREEN_PIXEL_HEIGHT)
 
 class GameEngine():
     def __init__(self):
