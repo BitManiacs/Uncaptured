@@ -6,7 +6,7 @@ SCREEN_PIXEL_WIDTH = 640
 SCREEN_PIXEL_HEIGHT = 480
 SCREEN_DIMENSION = (SCREEN_PIXEL_WIDTH, SCREEN_PIXEL_HEIGHT)
 clock = pygame.time.Clock()
-#game_engine = None #maybe dont need this
+
 
 class GameEngine():
     def __init__(self):
@@ -31,7 +31,7 @@ def main():
                 return
         # update and draw
         #game_engine.update()
-        #game_engine.draw()
+        game_engine.draw()
         # set the fps
         clock.tick(30) # 30 FPS
 
