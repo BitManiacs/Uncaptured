@@ -13,6 +13,7 @@ class TitleScreen():
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
         self.font = pygame.font.Font(OPTIONS_FONT,TITLE_FONT_SIZE)
         self.optionList = ["Start Game", "Options", "Exit"]
+        self.rects = [None] * len(self.optionList)
         self.selected = 0
         self.counter = 0
 
@@ -37,7 +38,7 @@ class TitleScreen():
             textpos = text.get_rect()
             textpos.centerx = self.bg.get_rect().centerx
             textpos.y = y
-            screen.blit(text, textpos)
+            self.rects[index] = screen.blit(text, textpos)
             y += Y_OFFSET
 
     def update(self):
@@ -48,6 +49,17 @@ class TitleScreen():
             if (event.key == pygame.K_RETURN):
                 ret = self.select()
                 return ret
+        if(event.type == pygame.MOUSEMOTION):
+             hover = Rect(event.pos, (0, 0)).collidelist(self.rects)
+             if hover > -1:
+                 self.selected = hover
+                 self.hover = True
+                 return ret
+             else:
+                 self.hover = False
+                 return ret
+        elif(event.type == pygame.MOUSEBUTTONUP and self.hover):
+            return self.select()
 
         if self.counter >= 3:
             self.counter = 0    
