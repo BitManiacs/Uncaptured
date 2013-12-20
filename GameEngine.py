@@ -1,6 +1,7 @@
 import pygame
 from Config import *
 from TitleScreen import TitleScreen
+from OptionsMenu import OptionsMenu
 from pygame.locals import *
 
 class GameEngine():
@@ -12,7 +13,12 @@ class GameEngine():
         # setup display screen
         self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
         # state is the event the game is in
-        self.state = None
+
+        self.titleScreen = TitleScreen()
+        self.optionsMenu = OptionsMenu()
+
+        self.state = self.titleScreen
+        self.stateID = TITLE_STATE
 
     # draws the current state of the game to the screen
     def draw(self):
@@ -21,8 +27,19 @@ class GameEngine():
             pygame.display.flip()
 
     def update(self):
-        if ( self.state != None ):
-            self.state.update()
+        if (self.state==None):
+            return self.stateID
+        newState = self.state.update()
+
+        if newState != self.stateID:
+            self.stateID = newState
+            if newState == OPTIONS_STATE:
+                self.setState(self.optionsMenu)
+            elif newState == TITLE_STATE:
+                self.setState(self.titleScreen)
+            elif newState == EXIT_STATE:
+                quit = pygame.event.Event(pygame.QUIT,{})
+                pygame.event.post(quit)
 
     # sets the current state of the game
     def setState(self,state):

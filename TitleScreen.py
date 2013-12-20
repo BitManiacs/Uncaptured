@@ -4,9 +4,6 @@ from pygame.locals import *
 
 Y_OFFSET = 40
 Y_START = SCREEN_PIXEL_HEIGHT/3.0
-START_GAME = 0
-OPTIONS = 1
-EXIT = 2
 
 
 class TitleScreen():
@@ -34,7 +31,7 @@ class TitleScreen():
             if (self.selected==index):
                 fontColor = SELECTED_FONT_COLOR
             else:
-                fontColor = OPTIONS_FONT_COLOR
+                fontColor = TITLE_FONT_COLOR
 
             text = self.font.render(string, True, fontColor)
             textpos = text.get_rect()
@@ -44,40 +41,37 @@ class TitleScreen():
             y += Y_OFFSET
 
     def update(self):
-        '''
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                keystate = pygame.key.get_pressed()
-                if (event.key == pygame.K_DOWN):
-                    self.selected = (self.selected+1) % len(self.optionList)
-                elif (event.key == pygame.K_UP):
-                    self.selected = (self.selected-1) % len(self.optionList)
-                elif (event.key == pygame.K_RETURN):
-                    self.select()'''
-                    
-        key = pygame.key.get_pressed()
-        if (key[K_RETURN]):
-            self.select()
-        elif (key[K_DOWN] and self.counter >=3):
-            self.selected = (self.selected+1) % len(self.optionList)
-            self.counter = 0
-        elif (key[K_UP] and self.counter >=3):
-            self.selected = (self.selected-1) % len(self.optionList)
-            self.counter = 0
-        self.counter += 1
-        return
+        ret = TITLE_STATE              
 
+        event = pygame.event.poll()
+        if(event.type == pygame.KEYDOWN):
+            if (event.key == pygame.K_RETURN):
+                ret = self.select()
+                return ret
+
+        if self.counter >= 3:
+            self.counter = 0    
+            key = pygame.key.get_pressed()
+            if (key[K_DOWN]):
+                self.selected = (self.selected+1) % len(self.optionList)
+            elif (key[K_UP]):
+                self.selected = (self.selected-1) % len(self.optionList)
+        self.counter += 1
+
+        return ret
 
     def select(self):
-        print self.optionList[self.selected]
         selected = self.selected
-        if selected == START_GAME:
+        if selected == START_GAME_STATE:
             print "Start game"
-        elif selected == OPTIONS:
+            return 0
+        elif selected == OPTIONS_STATE:
             print "Options"
-        elif selected == EXIT:
+            return OPTIONS_STATE    
+        elif selected == EXIT_STATE:
             print "Exit"
-            quit = pygame.event.Event(pygame.QUIT,{})
-            pygame.event.post(quit)
-        return
+            return EXIT_STATE
+
+    def setActive(self, active):
+        self.active = active
+
