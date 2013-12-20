@@ -19,6 +19,7 @@ class OptionsMenu:
 
         self.font = pygame.font.Font(OPTIONS_FONT,OPTIONS_FONT_SIZE)
         self.optionList = ["Controls", "Filler", "Back"]
+        self.rects = [None] * len(self.optionList)
         self.selected = 0
         self.counter = 0
 
@@ -44,7 +45,7 @@ class OptionsMenu:
             textpos = text.get_rect()
             textpos.centerx = X_START
             textpos.y = y
-            screen.blit(text, textpos)
+            self.rects[index] = screen.blit(text, textpos)
             y += Y_OFFSET
 
     def update(self):
@@ -54,6 +55,17 @@ class OptionsMenu:
             if (event.key == pygame.K_RETURN):
                 ret = self.select()
                 return ret
+        if(event.type == pygame.MOUSEMOTION):
+             hover = Rect(event.pos, (0, 0)).collidelist(self.rects)
+             if hover > -1:
+                 self.selected = hover
+                 self.hover = True
+                 return ret
+             else:
+                 self.hover = False
+                 return ret
+        elif(event.type == pygame.MOUSEBUTTONUP and self.hover):
+            return self.select()
 
         if self.counter >= 3:
             self.counter = 0
