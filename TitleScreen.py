@@ -1,12 +1,13 @@
 import pygame
 from Config import *
 from pygame.locals import *
+from GameState import GameState
 
 Y_OFFSET = 40
 Y_START = SCREEN_PIXEL_HEIGHT/3.0
 
 
-class TitleScreen():
+class TitleScreen(GameState):
     def __init__(self):
         # setup display screen
         self.bg = pygame.image.load(TITLE_BG).convert()
@@ -42,7 +43,7 @@ class TitleScreen():
             y += Y_OFFSET
 
     def update(self):
-        ret = TITLE_STATE              
+        ret = TITLE_STATE
 
         event = pygame.event.poll()
         if(event.type == pygame.KEYDOWN):
@@ -62,7 +63,7 @@ class TitleScreen():
             return self.select()
 
         if self.counter >= 3:
-            self.counter = 0    
+            self.counter = 0
             key = pygame.key.get_pressed()
             if (key[K_DOWN]):
                 self.selected = (self.selected+1) % len(self.optionList)
@@ -79,7 +80,7 @@ class TitleScreen():
             return 0
         elif selected == OPTIONS_STATE:
             print "Options"
-            return OPTIONS_STATE    
+            return OPTIONS_STATE
         elif selected == EXIT_STATE:
             print "Exit"
             return EXIT_STATE

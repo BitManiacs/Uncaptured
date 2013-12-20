@@ -7,12 +7,16 @@ from pygame.locals import *
 ''' GLOBAL VARS '''
 # need game engine to be changed by states
 game_engine = None
+# screen is also changed by states
+game_screen = None
 
 def main():
-    # make a GameEngine instance
-    game_engine = GameEngine()
-    # set state to title screen
-    #game_engine.setState(TitleScreen())
+    # make a GameEngine instance, declared in Config
+    GAME_ENGINE = GameEngine()
+    # make a GameDisplay instance, declared in Config
+    GAME_DISPLAY = Display()
+    # set state to title screen, declared in Config
+    CURRENT_STATE = TitleScreen()
     # continuously update game_engine
     while 1:
         if pygame.event.peek(QUIT):

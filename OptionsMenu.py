@@ -4,8 +4,8 @@ from pygame.locals import *
 
 
 Y_OFFSET = 40
-Y_START = SCREEN_PIXEL_HEIGHT/4.0
-X_START = SCREEN_PIXEL_WIDTH/3.5
+Y_START = DISPLAY_PIXEL_HEIGHT/4.0
+X_START = DISPLAY_PIXEL_WIDTH/3.5
 BACK = 0
 OPTIONS = 1
 BACK = 2
@@ -15,7 +15,7 @@ class OptionsMenu:
     def __init__(self):
         # setup display screen
         self.bg = pygame.image.load(OPTIONS_BG).convert()
-        self.bgimg = self.bg.subsurface((0,0, 640, 480))    
+        self.bgimg = self.bg.subsurface((0,0, 640, 480))
 
         self.font = pygame.font.Font(OPTIONS_FONT,OPTIONS_FONT_SIZE)
         self.optionList = ["Controls", "Filler", "Back"]
@@ -49,7 +49,7 @@ class OptionsMenu:
             y += Y_OFFSET
 
     def update(self):
-        ret = OPTIONS_STATE         
+        ret = OPTIONS_STATE
         event = pygame.event.poll()
         if(event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_RETURN):

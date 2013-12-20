@@ -3,10 +3,14 @@ Title: Config
 Description: This file holds all the global variables that can be modified
     or accessed by other modules.
 '''
+GAME_DISPLAY = None
+GAME_ENGINE = None
+CURRENT_STATE = None
 
-SCREEN_PIXEL_WIDTH = 640
-SCREEN_PIXEL_HEIGHT = 480
-SCREEN_DIMENSION = (SCREEN_PIXEL_WIDTH, SCREEN_PIXEL_HEIGHT)
+
+DISPLAY_PIXEL_WIDTH = 640
+DISPLAY_PIXEL_HEIGHT = 480
+DISPLAY_DIMENSION = (DISPLAY_PIXEL_WIDTH, DISPLAY_PIXEL_HEIGHT)
 
 TITLE_BG = "img/TitleScreen2.png"
 OPTIONS_BG = "img/OptionsMenu.png"

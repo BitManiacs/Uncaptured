@@ -10,8 +10,6 @@ class GameEngine():
         pygame.init()
         # initialize the game clock
         self.clock = pygame.time.Clock()
-        # setup display screen
-        self.screen = pygame.display.set_mode(SCREEN_DIMENSION)
         # state is the event the game is in
         self.state=None
 
