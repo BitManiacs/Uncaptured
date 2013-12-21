@@ -1,12 +1,7 @@
 '''
 Title: Config
-Description: This file holds all the global variables that can be modified
-    or accessed by other modules.
+Description: This file holds all the global variables that can be accessed/read only by other modules.
 '''
-GAME_DISPLAY = None
-GAME_ENGINE = None
-CURRENT_STATE = None
-
 
 DISPLAY_PIXEL_WIDTH = 640
 DISPLAY_PIXEL_HEIGHT = 480

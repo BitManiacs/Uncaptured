@@ -1,7 +1,9 @@
 import pygame
 from Config import *
+import Mod
 from GameEngine import GameEngine
 from TitleScreen import TitleScreen
+from Display import *
 from pygame.locals import *
 
 ''' GLOBAL VARS '''
@@ -12,11 +14,13 @@ game_screen = None
 
 def main():
     # make a GameEngine instance, declared in Config
-    GAME_ENGINE = GameEngine()
+    Mod.GAME_ENGINE = GameEngine()
+    game_engine = Mod.GAME_ENGINE
     # make a GameDisplay instance, declared in Config
-    GAME_DISPLAY = Display()
+    Mod.GAME_DISPLAY = Display()
+    print Mod.GAME_DISPLAY
     # set state to title screen, declared in Config
-    CURRENT_STATE = TitleScreen()
+    Mod.CURRENT_STATE = TitleScreen()
     # continuously update game_engine
     while 1:
         if pygame.event.peek(QUIT):

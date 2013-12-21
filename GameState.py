@@ -1,7 +1,12 @@
 import pygame
+from Config import *
 
+
+### ILL MAKE INHERITANCE LATER
 class GameState():
-    # set the GameState's display
-    self.display = GAME_DISPLAY
-    # set the GameState's engine
-    self.engine = GAME_ENGINE
+    def __init__(self):
+        # set the GameState's display
+        self.game_display = GAME_DISPLAY
+        # this state has a game engine
+        self.game_engine = GAME_ENGINE
+

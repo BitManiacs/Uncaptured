@@ -1,5 +1,6 @@
 import pygame, gc
 from Config import *
+import Mod
 from TitleScreen import TitleScreen
 from OptionsMenu import OptionsMenu
 from pygame.locals import *
@@ -11,13 +12,12 @@ class GameEngine():
         # initialize the game clock
         self.clock = pygame.time.Clock()
         # state is the event the game is in
-        self.state=None
+        self.state = None
 
     # draws the current state of the game to the screen
     def draw(self):
         if ( self.state != None ):
-            self.state.draw(self.screen)
-            pygame.display.flip()
+            self.state.draw()
 
     def update(self):
         if (self.state==None):

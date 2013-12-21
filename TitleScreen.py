@@ -1,15 +1,17 @@
 import pygame
 from Config import *
+import Mod
 from pygame.locals import *
 from GameState import GameState
+from Display import Display
 
 Y_OFFSET = 40
-Y_START = SCREEN_PIXEL_HEIGHT/3.0
+Y_START = DISPLAY_PIXEL_HEIGHT/3.0
 
 
-class TitleScreen(GameState):
+class TitleScreen():
     def __init__(self):
-        # setup display screen
+        # setup TitleScreen
         self.bg = pygame.image.load(TITLE_BG).convert()
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
         self.font = pygame.font.Font(OPTIONS_FONT,TITLE_FONT_SIZE)
@@ -17,17 +19,23 @@ class TitleScreen(GameState):
         self.rects = [None] * len(self.optionList)
         self.selected = 0
         self.counter = 0
+        # have a Game Engine
+        self.game_engine = Mod.GAME_ENGINE
+        # have a Game display
+        self.game_display = Mod.GAME_DISPLAY
+
 
     # called by the gameengine, draws the state of Title Screen
-    def draw(self, screen):
-        # fill screen with darkness
-        screen.fill((0,0,0))
-        screen.blit(self.bgimg, (0, 0))
-        self.drawText(screen)
+    def draw(self):
+        # fill display with darkness
+        self.game_display.display.fill((0,0,0))
+        self.game_display.display.blit(self.bgimg, (0, 0))
+        self.drawText()
         # update the display
-        pygame.display.flip()
+        self.game_display.updateDisplay()
 
-    def drawText(self, screen):
+
+    def drawText(self):
         y = Y_START
         for index, string in enumerate(self.optionList):
             if (self.selected==index):
@@ -39,8 +47,9 @@ class TitleScreen(GameState):
             textpos = text.get_rect()
             textpos.centerx = self.bg.get_rect().centerx
             textpos.y = y
-            self.rects[index] = screen.blit(text, textpos)
+            self.rects[index] = self.game_display.display.blit(text, textpos)
             y += Y_OFFSET
+
 
     def update(self):
         ret = TITLE_STATE
