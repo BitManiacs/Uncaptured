@@ -7,18 +7,15 @@ from Menu import Menu
 Y_OFFSET = 40
 Y_START = DISPLAY_PIXEL_HEIGHT/3.0
 X_START = DISPLAY_PIXEL_WIDTH/5.0
-BACK = 0
-OPTIONS = 1
-BACK = 2
 
-
-class ControlsMenu(Menu, object):
+class ControlsMenu(Menu):
     def __init__(self):
         Menu.__init__(self, OPTIONS_STATE1, X_START, Y_START, 
                                     OPTIONS_FONT_COLOR, SELECTED_OPTIONS_COLOR)
         # setup TitleScreen
-        self.setBG(CONTROLS_BG)
-        self.setList(["Directional Arrows", "WASD", "Back"])
+        self.setBG(CONTROLS_BG) 
+        optionsList = ["Directional Arrows", "WASD"]
+        self.setList(optionsList+["Back"])
 
     def draw(self):
         Menu.draw(self)

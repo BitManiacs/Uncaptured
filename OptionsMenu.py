@@ -8,10 +8,6 @@ from ControlsMenu import ControlsMenu
 Y_OFFSET = 40
 Y_START = DISPLAY_PIXEL_HEIGHT/4.0
 X_START = DISPLAY_PIXEL_WIDTH/3.5
-BACK = 0
-OPTIONS = 1
-BACK = 2
-
 
 class OptionsMenu(Menu):
     def __init__(self):
@@ -19,8 +15,9 @@ class OptionsMenu(Menu):
                                     OPTIONS_FONT_COLOR, SELECTED_OPTIONS_COLOR)
         # setup TitleScreen
         self.setBG(OPTIONS_BG)
-        self.setList(["Controls", "Filler", "Back"])
-        self.game_engine.addState("Controls", ControlsMenu())
+        optionsList = ["Controls", "Filler"]
+        self.setList(optionsList + ["Back"])
+        self.game_engine.addState("Controls", ControlsMenu() )
 
     def select(self):
         selected = self.selected

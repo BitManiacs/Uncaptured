@@ -31,6 +31,9 @@ class Menu(object):
     # called by the gameengine, draws the state of Title Screen
         self.optionList = list
         self.rects = [None] * len(list)
+        for string in self.optionList:
+            if string != "Back":
+                self.game_engine.addState(string, self)
 
     def setBG(self, bg):
         self.bg = pygame.image.load(bg).convert()
@@ -40,6 +43,9 @@ class Menu(object):
     def setCoords(self, centerX, y):
         self.centerX = centerX
         self.y = y
+
+    def reset(self):
+        self.selected =0
 
     def draw(self):
         # fill screen with darkness

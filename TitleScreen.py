@@ -23,7 +23,7 @@ class TitleScreen(Menu):
         selected = self.selected
         print self.optionList[self.selected]
         if selected == len(self.optionList)-1:
-            self.game_engine.quit()
+            self.game_engine.exit()
         self.game_engine.setState(self.optionList[self.selected])
         
 

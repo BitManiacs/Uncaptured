@@ -13,7 +13,7 @@ class GameEngine():
         self.clock = pygame.time.Clock()
         # state is the event the game is in
         self.state = None
-        self.states = {}
+        self.states = {"Back":[]}
 
     # draws the current state of the game to the screen
     def draw(self):
@@ -30,9 +30,14 @@ class GameEngine():
 
     # sets the current state of the game
     def setState(self,stateName):
-        prev = self.state
-        self.state = self.states[stateName]
-        self.states["Back"] = prev
+        if stateName == "Back":
+            self.state.reset()
+            self.state = self.states["Back"].pop()
+            return
+        if self.states[stateName] != self.state:
+            self.states["Back"].append(self.state)
+            self.state.reset()
+            self.state = self.states[stateName]
 
     def addState(self,stateName,stateInstance):
         self.states[stateName] = stateInstance
