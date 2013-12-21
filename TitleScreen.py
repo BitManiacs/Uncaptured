@@ -23,6 +23,7 @@ class TitleScreen():
         self.game_engine = Mod.GAME_ENGINE
         # have a Game display
         self.game_display = Mod.GAME_DISPLAY
+        self.hover = False
 
 
     # called by the gameengine, draws the state of Title Screen
@@ -54,20 +55,18 @@ class TitleScreen():
     def update(self):
         ret = TITLE_STATE
 
+        hover = Rect(pygame.mouse.get_pos(), (0, 0)).collidelist(self.rects)
+        if hover > -1:
+            self.selected = hover
+            self.hover = True
+        else:
+             self.hover = False
+
         event = pygame.event.poll()
         if(event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_RETURN):
                 ret = self.select()
                 return ret
-        if(event.type == pygame.MOUSEMOTION):
-             hover = Rect(event.pos, (0, 0)).collidelist(self.rects)
-             if hover > -1:
-                 self.selected = hover
-                 self.hover = True
-                 return ret
-             else:
-                 self.hover = False
-                 return ret
         elif(event.type == pygame.MOUSEBUTTONUP and self.hover):
             return self.select()
 

@@ -17,7 +17,6 @@ class OptionsMenu:
         # setup display screen
         self.bg = pygame.image.load(OPTIONS_BG).convert()
         self.bgimg = self.bg.subsurface((0,0, 640, 480))
-
         self.font = pygame.font.Font(OPTIONS_FONT,OPTIONS_FONT_SIZE)
         self.optionList = ["Controls", "Filler", "Back"]
         self.rects = [None] * len(self.optionList)
@@ -27,6 +26,7 @@ class OptionsMenu:
         self.game_engine = Mod.GAME_ENGINE
         # have a Game display
         self.game_display = Mod.GAME_DISPLAY
+        self.hover = False
 
 
     # called by the gameengine, draws the state of Title Screen
@@ -36,7 +36,7 @@ class OptionsMenu:
         self.game_display.display.blit(self.bgimg, (0, 0))
         self.drawText()
         # update the display
-        pygame.display.flip()
+        self.game_display.updateDisplay()
 
     def drawText(self):
         y = Y_START
@@ -56,20 +56,19 @@ class OptionsMenu:
 
     def update(self):
         ret = OPTIONS_STATE
+
+        hover = Rect(pygame.mouse.get_pos(), (0, 0)).collidelist(self.rects)
+        if hover > -1:
+            self.selected = hover
+            self.hover = True
+        else:
+             self.hover = False
+
         event = pygame.event.poll()
         if(event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_RETURN):
                 ret = self.select()
                 return ret
-        if(event.type == pygame.MOUSEMOTION):
-             hover = Rect(event.pos, (0, 0)).collidelist(self.rects)
-             if hover > -1:
-                 self.selected = hover
-                 self.hover = True
-                 return ret
-             else:
-                 self.hover = False
-                 return ret
         elif(event.type == pygame.MOUSEBUTTONUP and self.hover):
             return self.select()
 

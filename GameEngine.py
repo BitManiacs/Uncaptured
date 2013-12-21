@@ -23,6 +23,7 @@ class GameEngine():
         if (self.state==None):
             self.setState(TitleScreen())
             self.stateID = TITLE_STATE
+            return 
 
         newState = self.state.update()
 
