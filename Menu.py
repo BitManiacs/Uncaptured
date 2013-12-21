@@ -83,7 +83,6 @@ class Menu(object):
         if(event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_RETURN):
                 return self.select()
-
         elif(event.type == pygame.MOUSEMOTION and self.hover):
             self.selected = hover
             return ret
@@ -94,9 +93,9 @@ class Menu(object):
             self.counter = 0
 
             key = pygame.key.get_pressed()
-            if (key[K_DOWN]):
+            if (key[self.game_engine.KEY_DOWN]):
                 self.selected = (self.selected+1) % len(self.optionList)
-            elif (key[K_UP]):
+            elif (key[self.game_engine.KEY_UP]):
                 self.selected = (self.selected-1) % len(self.optionList)
         self.counter += 1
         return ret

@@ -15,6 +15,12 @@ class GameEngine():
         self.state = None
         self.states = {"Back":[]}
 
+        self.wasd = False
+        self.KEY_DOWN = pygame.K_DOWN
+        self.KEY_LEFT = pygame.K_LEFT
+        self.KEY_RIGHT = pygame.K_RIGHT
+        self.KEY_UP = pygame.K_UP
+
     # draws the current state of the game to the screen
     def draw(self):
         if ( self.state != None ):
@@ -49,3 +55,22 @@ class GameEngine():
     def exit(self):
         quit = pygame.event.Event(pygame.QUIT,{})
         pygame.event.post(quit)
+
+
+    def getWasd(self):
+        return self.wasd
+
+    def setWasd(self, wasd):
+        self.wasd = wasd
+        if wasd:
+            print "YES"
+            self.KEY_DOWN = pygame.K_s
+            self.KEY_LEFT = pygame.K_a
+            self.KEY_RIGHT = pygame.K_d
+            self.KEY_UP = pygame.K_w
+        else:
+            print "NO"
+            self.KEY_DOWN = pygame.K_DOWN
+            self.KEY_LEFT = pygame.K_LEFT
+            self.KEY_RIGHT = pygame.K_RIGHT
+            self.KEY_UP = pygame.K_UP
