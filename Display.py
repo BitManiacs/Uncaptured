@@ -22,6 +22,12 @@ class Display():
     def updateDisplay(self):
         pygame.display.flip()
 
+    def getWidth(self):
+        return self.dimension[0]
+
+    def getHeight(self):
+        return self.dimension[1]
+
 
 
 

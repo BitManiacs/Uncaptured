@@ -29,6 +29,7 @@ def main():
         game_engine.update()
 
         game_engine.draw()
+        Mod.GAME_DISPLAY.updateDisplay()
         # set the fps
         game_engine.FPS(30) # 30 FPS
 

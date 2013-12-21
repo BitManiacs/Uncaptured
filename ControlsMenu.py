@@ -3,24 +3,34 @@ from Config import *
 import Mod
 from pygame.locals import *
 from Menu import Menu
-from ControlsMenu import ControlsMenu
 
 Y_OFFSET = 40
-Y_START = DISPLAY_PIXEL_HEIGHT/4.0
-X_START = DISPLAY_PIXEL_WIDTH/3.5
+Y_START = DISPLAY_PIXEL_HEIGHT/3.0
+X_START = DISPLAY_PIXEL_WIDTH/5.0
 BACK = 0
 OPTIONS = 1
 BACK = 2
 
 
-class OptionsMenu(Menu):
+class ControlsMenu(Menu, object):
     def __init__(self):
         Menu.__init__(self, OPTIONS_STATE1, X_START, Y_START, 
                                     OPTIONS_FONT_COLOR, SELECTED_OPTIONS_COLOR)
         # setup TitleScreen
-        self.setBG(OPTIONS_BG)
-        self.setList(["Controls", "Filler", "Back"])
-        self.game_engine.addState("Controls", ControlsMenu())
+        self.setBG(CONTROLS_BG)
+        self.setList(["Directional Arrows", "WASD", "Back"])
+
+    def draw(self):
+        Menu.draw(self)
+
+        x = X_START
+        y = Y_START
+        text = self.font.render("Movement", True, OPTIONS_FONT_COLOR)
+        textpos = text.get_rect()
+        textpos.centerx = x
+        textpos.y = y - Y_OFFSET
+        self.game_display.display.blit(text, textpos)
+
 
     def select(self):
         selected = self.selected

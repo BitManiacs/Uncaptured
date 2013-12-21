@@ -13,6 +13,7 @@ class GameEngine():
         self.clock = pygame.time.Clock()
         # state is the event the game is in
         self.state = None
+        self.states = {}
 
     # draws the current state of the game to the screen
     def draw(self):
@@ -21,26 +22,25 @@ class GameEngine():
 
     def update(self):
         if (self.state==None):
-            self.setState(TitleScreen())
-            self.stateID = TITLE_STATE
+            self.state=TitleScreen()
+            self.states["Title"] = self.state
             return 
 
-        newState = self.state.update()
-
-        if newState != self.stateID:
-            self.stateID = newState
-            if newState == OPTIONS_STATE:
-                self.setState(OptionsMenu())
-            elif newState == TITLE_STATE:
-                self.setState(TitleScreen())
-            elif newState == EXIT_STATE:
-                quit = pygame.event.Event(pygame.QUIT,{})
-                pygame.event.post(quit)
+        self.state.update()
 
     # sets the current state of the game
-    def setState(self,state):
-        self.state = state
+    def setState(self,stateName):
+        prev = self.state
+        self.state = self.states[stateName]
+        self.states["Back"] = prev
+
+    def addState(self,stateName,stateInstance):
+        self.states[stateName] = stateInstance
 
     # controls the framerate of the whole game
     def FPS(self, framerate):
         self.clock.tick(framerate)
+
+    def exit(self):
+        quit = pygame.event.Event(pygame.QUIT,{})
+        pygame.event.post(quit)
