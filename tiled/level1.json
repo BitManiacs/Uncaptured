@@ -17,7 +17,7 @@
          "objects":[
                 {
                  "gid":10,
-                 "height":32,
+                 "height":0,
                  "name":"",
                  "properties":
                     {
@@ -25,9 +25,9 @@
                     },
                  "type":"",
                  "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":0
+                 "width":0,
+                 "x":256,
+                 "y":448
                 }, 
                 {
                  "gid":10,
@@ -40,7 +40,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":0,
+                 "x":352,
                  "y":448
                 }],
          "opacity":1,
