@@ -56,7 +56,6 @@ class Level():
             for interactable in objects[name]:
                 self.game_display.display.blit(objectimg, interactable.getPos())
 
-    ''' FOR LEVEL STATES '''
     def initGround(self):
         jsondata = self.data
         # populate 2d array with 0's
@@ -103,4 +102,3 @@ class Level():
         # set reference to object
         self.objects = obj_dict
         self.game_engine.objects = obj_dict
-    ''' END LEVEL STATES '''
