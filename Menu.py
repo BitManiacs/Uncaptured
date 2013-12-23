@@ -12,7 +12,7 @@ class Menu(object):
         self.font = pygame.font.Font(MENU_FONT,MENU_FONT_SIZE)
         self.fontColor = fontColor
         self.selectedColor = selectedColor
-        
+
         self.stateID = stateID
 
         self.centerX = centerX
@@ -27,10 +27,10 @@ class Menu(object):
         # have a Game display
         self.game_display = Mod.GAME_DISPLAY
 
-    def setList(self, list):
+    def setList(self, newlist):
     # called by the gameengine, draws the state of Title Screen
-        self.optionList = list
-        self.rects = [None] * len(list)
+        self.optionList = newlist
+        self.rects = [None] * len(newlist)
         for string in self.optionList:
             if string != "Back":
                 self.game_engine.addState(string, self)

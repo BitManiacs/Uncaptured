@@ -11,4 +11,5 @@ class Interactable():
     def setPos(self, (x, y)):
         self.pos = (x, y)
 
-
+    def getPos(self):
+        return self.pos

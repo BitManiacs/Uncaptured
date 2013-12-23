@@ -20,7 +20,7 @@ def main():
     Mod.GAME_DISPLAY = Display()
     print Mod.GAME_DISPLAY
     # set state to title screen, declared in Config
-    Mod.CURRENT_STATE = TitleScreen()
+    #Mod.CURRENT_STATE = TitleScreen()
     # continuously update game_engine
     while 1:
         if pygame.event.peek(QUIT):

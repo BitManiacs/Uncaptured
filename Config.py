@@ -3,6 +3,10 @@ Title: Config
 Description: This file holds all the global variables that can be accessed/read only by other modules.
 '''
 import pygame
+from pygame import *
+import json
+
+pygame.init()
 
 DISPLAY_PIXEL_WIDTH = 640
 DISPLAY_PIXEL_HEIGHT = 480
@@ -34,3 +38,21 @@ EXIT_STATE = 2
 TITLE_STATE = -1
 STATES = {0:"Game", 1:"Options", 2:"Exit", 3: "Title", 4:"Controls"}
 
+# different json file levels
+LVL_TUT = json.loads(open("tiled/tutorial.json").read())
+
+''' TILESETS '''
+GROUND_TILESET = []
+# loading whole tile set
+GTS = pygame.image.load("img/Tiles Set.png")
+TUT_GRND_TS = []
+TUT_GRND_TS.append(GTS.subsurface(0, 64, 32, 32))
+TUT_GRND_TS.append(GTS.subsurface(160, 32, 32, 32))
+
+''' OBJECTS '''
+WALLIMG = GTS.subsurface(96, 32, 32, 32)
+GOALIMG = GTS.subsurface(32, 64, 32, 32)
+PLAYERIMG = pygame.image.load("img/Bulbasaur.png")
+BOULDERIMG = pygame.image.load("img/Boulder.png")
+GRASSIMG = pygame.image.load("img/Grass.png")
+ENEMYIMG = pygame.image.load("img/Rocket.png")

@@ -6,9 +6,10 @@ from GameState import GameState
 from Display import Display
 from Menu import Menu
 from OptionsMenu import OptionsMenu
+from Level import *
 
 Y_START = DISPLAY_PIXEL_HEIGHT/3.0
-X_START = DISPLAY_PIXEL_WIDTH/2.0   
+X_START = DISPLAY_PIXEL_WIDTH/2.0
 
 
 class TitleScreen(Menu):
@@ -18,6 +19,8 @@ class TitleScreen(Menu):
         self.setBG(TITLE_BG)
         self.setList(["Start Game", "Options", "Exit"])
         self.game_engine.addState("Options", OptionsMenu())
+        # i guess loading the game?
+        self.game_engine.addState("Start Game", Level(LVL_TUT))
 
     def select(self):
         selected = self.selected
@@ -25,5 +28,5 @@ class TitleScreen(Menu):
         if selected == len(self.optionList)-1:
             self.game_engine.exit()
         self.game_engine.setState(self.optionList[self.selected])
-        
+
 
